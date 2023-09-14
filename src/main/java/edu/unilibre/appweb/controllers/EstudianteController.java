@@ -19,6 +19,7 @@ public class EstudianteController {
         //Utiliza el JPA para
         EstudianteModel nuevoEstudiante =  estudianteRespository.save(estudiante);
         return new ResponseEntity<>(nuevoEstudiante, HttpStatus.CREATED);
+
     }
 
     @GetMapping("/get_student/{id}")
