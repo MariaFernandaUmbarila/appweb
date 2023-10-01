@@ -5,6 +5,7 @@ import edu.unilibre.appweb.repository.EstudianteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,6 +26,11 @@ public class EstudianteController {
     @GetMapping("/get_student/{id}")
     public Optional<EstudianteModel> getEstudiante(@PathVariable Integer id) {
         return estudianteRespository.findById(id);
+    }
+
+    @GetMapping("/get_all_students")
+    public List<EstudianteModel> getAllEstudiantes(){
+        return estudianteRespository.findAll();
     }
 
     @PutMapping("/update_student/{id}")
