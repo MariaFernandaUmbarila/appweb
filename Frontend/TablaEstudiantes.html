@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppWeb de Estudiantes</title>
+    <link rel="stylesheet" href="./CSS/tabla.css">
+    <script src="./JS/tabla.js"></script>
+</head>
+
+<body>
+
+    <div class="toolbar">
+        <span>AppWeb de Estudiantes</span>
+        <a href="./RegistroEstudiantes.html">Añadir estudiante</a>
+    </div>
+
+
+    <div class="main-body">
+
+        <div class="card-content">
+            <div class="card-title">
+                <h3>Lista de manejo de los estudiantes</h3>
+            </div>
+            <div class="subcard-content">
+                <br>
+                <p>Programación en Ambientes Web</p>
+                <p>Universidad Libre - 20232</p>
+            </div>
+        </div>
+
+
+            <div class="table-container">
+
+                <table class="table">
+
+                    <thead>
+                        <tr class="cell">
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="studentTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

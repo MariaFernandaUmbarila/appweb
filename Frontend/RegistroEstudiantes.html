@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="./css/componentes/card.css">
     <link rel="stylesheet" href="./css/componentes/inputs.css">
     <link rel="stylesheet" href="./css/componentes/button.css">
-    <script src="/Registro.js"></script>
+    <script src="./JS/Registro.js"></script>
+    <script src="./JS/registroEstudiante.js"></script>
+
     
 </head>
 
@@ -25,22 +27,22 @@
                     <div class="input-container">
                         <input name="nombre" id="nombre" class="input" type="text" placeholder="Nombre" required>
                         <label class="input-label" for="nombre">Nombre</label>
-                        <span class="input-message-error">Este campo no es valido</span>
+                        <span class="input-message-error" id="nombreError">Este campo no es valido</span>
                     </div>
                     <div class="input-container">
                         <input name="apellido" id="apellido" class="input" type="text" placeholder="Apellido" required>
                         <label class="input-label" for="apellido">Apellido</label>
-                        <span class="input-message-error">Este campo no es valido</span>
+                        <span class="input-message-error" id="apellidoError">Este campo no es valido</span>
                     </div>
                     <div class="input-container">
                         <input name="correo" id="correo" class="input" type="email" placeholder="Correo" required>
                         <label class="input-label" for="correo">Correo</label>
-                        <span class="input-message-error">Este campo no es valido</span>
+                        <span class="input-message-error" id="emailError">Este campo no es valido</span>
                     </div>
                     
                 </fieldset>
                 
-                <button class="button">Registrar</a>
+                <button class="button" type="submit" id="registrarBtn">Registrar</button>
             </form>
         </section>
     </main>
