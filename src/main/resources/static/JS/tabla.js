@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         })
         .catch(error => {
-            console.error('Error al obtener la lista de estudiantes:', error);
+            alert('Error al obtener la lista de estudiantes: ' + error);
         });
 });
 
@@ -29,22 +29,21 @@ function editarEstudiante(id) {
     window.location.href = `./RegistroEstudiantes.html?edit=${id}`;
 }
 
-
 function eliminarEstudiante(id) {
     fetch(`http://localhost:8081/api/delete_student/${id}`, {
         method: 'DELETE'
     })
         .then(response => {
             if (response.status === 204) {
-                console.log('Estudiante eliminado con éxito.');
+                alert('Estudiante eliminado con éxito.');
                 location.reload();
             } else if (response.status === 404) {
-                console.error('Estudiante no encontrado.');
+                alert('Estudiante no encontrado.');
             } else {
-                console.error('Error al eliminar el estudiante.');
+                alert('Error al eliminar el estudiante.');
             }
         })
         .catch(error => {
-            console.error('Error al eliminar el estudiante:', error);
+            alert('Error al eliminar el estudiante: ' + error);
         });
 }
