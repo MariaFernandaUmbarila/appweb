@@ -50,14 +50,6 @@ a:hover {
     padding: 0 16px 0 16px;
 }
 
-.cell {
-    box-sizing: border-box;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    outline: none;
-    text-align: left;
-}
-
 .card-content {
     border: 1px solid #ddd;
     border-radius: 4px;
