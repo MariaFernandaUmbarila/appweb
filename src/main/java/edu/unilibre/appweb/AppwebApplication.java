@@ -9,5 +9,4 @@ public class AppwebApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AppwebApplication.class, args);
 	}
-
 }
