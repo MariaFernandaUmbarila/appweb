@@ -23,9 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error al obtener la lista de estudiantes:', error);
         });
 });
-function editarEstudiante(id) {
 
+function editarEstudiante(id) {
+    // Redirigir a la página RegistroEstudiantes.html?edit=id
+    window.location.href = `./RegistroEstudiantes.html?edit=${id}`;
 }
+
 
 function eliminarEstudiante(id) {
     fetch(`http://localhost:8081/api/delete_student/${id}`, {

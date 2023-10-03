@@ -33,3 +33,25 @@ document.getElementById('registroForm').addEventListener('submit', function (eve
     });
 });
 });
+
+// Obtener el parámetro "edit" de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const editId = urlParams.get("edit");
+
+// Verificar si el parámetro "edit" está presente
+if (editId !== null) {
+    // Hacer una solicitud a tu API para obtener los datos del estudiante por su ID (editId)
+    fetch(`http://localhost:8081/api/get_student/${editId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Llenar el formulario con los datos del estudiante obtenidos de la API
+            document.getElementById("nombre").value = data.nombre;
+            document.getElementById("apellido").value = data.apellido;
+            document.getElementById("correo").value = data.correo;
+        })
+        .catch(error => {
+            console.error("Error al obtener los datos del estudiante: ", error);
+        });
+}
+
+
