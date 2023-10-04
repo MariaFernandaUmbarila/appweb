@@ -15,6 +15,7 @@ public class EstudianteController {
     @Autowired
     private EstudianteRepository estudianteRespository;
 
+    @CrossOrigin(origins = "http://localhost:63342/")
     @PostMapping("/create_student")
     public ResponseEntity<EstudianteModel> createEstudiante(@RequestBody EstudianteModel estudiante){
         //Utiliza el JPA para
@@ -23,16 +24,19 @@ public class EstudianteController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:63342/")
     @GetMapping("/get_student/{id}")
     public Optional<EstudianteModel> getEstudiante(@PathVariable Integer id) {
         return estudianteRespository.findById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:63342/")
     @GetMapping("/get_all_students")
     public List<EstudianteModel> getAllEstudiantes(){
         return estudianteRespository.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:63342/")
     @PutMapping("/update_student/{id}")
     public ResponseEntity<EstudianteModel> updateEstudiante(@PathVariable Integer id, @RequestBody EstudianteModel estudiante) {
 
@@ -51,6 +55,7 @@ public class EstudianteController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:63342/")
     @DeleteMapping("/delete_student/{id}")
     public ResponseEntity<HttpStatus> borraEstudiante(@PathVariable Integer id) {
 
