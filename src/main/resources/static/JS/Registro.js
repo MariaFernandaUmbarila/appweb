@@ -1,5 +1,5 @@
-// registro.js
 document.addEventListener('DOMContentLoaded', function() {
+
     const formulario = document.getElementById('registroForm');
     const nombreInput = document.getElementById('nombre');
     const apellidoInput = document.getElementById('apellido');
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mensajeRegistro = document.getElementById('mensajeRegistro');
 
     document.getElementById('registrarBtn').addEventListener('click', function() {
+
         let isValid = true;
 
         // Validación del campo de nombre
@@ -38,9 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Si el formulario es válido, muestra el mensaje de registro exitoso
-        if (isValid) {
+        /*if (isValid) {
             mensajeRegistro.style.display = 'block';
-            // Aquí puedes realizar cualquier otra acción que necesites, como enviar los datos al servidor
-        }
+        }*/
     });
 });
