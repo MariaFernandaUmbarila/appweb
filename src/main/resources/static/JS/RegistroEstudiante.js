@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let datosEstudiante = {
             nombre: nombre,
             apellido: apellido,
-            correo: correo
+            correo: correo,
+            rol: 'E'
         };
 
         // Verificar si el parámetro "edit" está presente, es decir, se quiere actualizar

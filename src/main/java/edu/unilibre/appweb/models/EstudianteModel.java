@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="estudiante")
+@Table(name="persona")
 public class EstudianteModel {
 
     @Id
@@ -15,4 +15,5 @@ public class EstudianteModel {
     private String nombre;
     private String apellido;
     private String correo;
+    private char rol;
 }
