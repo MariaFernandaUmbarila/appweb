@@ -8,8 +8,8 @@ no de la tabla de personas*/
 @Getter
 @Setter
 @Entity
-@Table(name="estudiante")
-public class EstudianteModel {
+@Table(name="profesor")
+public class ProfesorModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

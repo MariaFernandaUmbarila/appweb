@@ -14,8 +14,9 @@ public class EstudianteController {
 
     @Autowired
     private EstudianteRepository estudianteRespository;
+    private final String frontApi = "http://localhost:63342/";
 
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin(origins = frontApi)
     @PostMapping("/create_student")
     public ResponseEntity<EstudianteModel> createEstudiante(@RequestBody EstudianteModel estudiante){
         //Utiliza el JPA para
@@ -24,7 +25,7 @@ public class EstudianteController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin(origins = frontApi)
     @GetMapping("/get_student/{id}")
     public ResponseEntity<EstudianteModel> getEstudiante(@PathVariable Integer id) {
         EstudianteModel estudiante = estudianteRespository.findById(id).orElseThrow(
@@ -33,13 +34,13 @@ public class EstudianteController {
         return ResponseEntity.ok(estudiante);
     }
 
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin(origins = frontApi)
     @GetMapping("/get_all_students")
     public List<EstudianteModel> getAllEstudiantes(){
         return estudianteRespository.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin(origins = frontApi)
     @PutMapping("/update_student/{id}")
     public EstudianteModel updateEstudiante(@PathVariable Integer id, @RequestBody EstudianteModel estudiante) {
 
@@ -54,7 +55,7 @@ public class EstudianteController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin(origins = frontApi)
     @DeleteMapping("/delete_student/{id}")
     public ResponseEntity<HttpStatus> borraEstudiante(@PathVariable Integer id) {
 
