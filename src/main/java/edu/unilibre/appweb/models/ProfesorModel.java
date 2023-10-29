@@ -8,7 +8,7 @@ no de la tabla de personas*/
 @Getter
 @Setter
 @Entity
-@Table(name="profesor")
+@Table(name="persona")
 public class ProfesorModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,4 +16,5 @@ public class ProfesorModel {
     private String nombre;
     private String apellido;
     private String correo;
+    private String rol = "P";
 }

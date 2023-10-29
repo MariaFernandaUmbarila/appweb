@@ -1,9 +1,6 @@
 package edu.unilibre.appweb.models;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -12,8 +9,6 @@ import org.hibernate.annotations.OnDeleteAction;
 @Setter
 @Table(name="nota")
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class NotaModel {
 
     @Id
@@ -24,8 +19,22 @@ public class NotaModel {
     private Double porcentaje;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "codigo", referencedColumnName = "codigo")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private CursoModel curso;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "estudiante_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private EstudianteModel estudiante;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "profesor_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private ProfesorModel profesor;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "materia_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private MateriaModel materia;
 }

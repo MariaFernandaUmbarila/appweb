@@ -1,4 +1,5 @@
 package edu.unilibre.appweb.controllers;
+import edu.unilibre.appweb.constants.AppConstants;
 import edu.unilibre.appweb.exceptions.NotFoundException;
 import edu.unilibre.appweb.models.EstudianteModel;
 import org.springframework.http.HttpStatus;
@@ -14,20 +15,19 @@ public class EstudianteController {
 
     @Autowired
     private EstudianteRepository estudianteRespository;
-    private final String frontApi = "http://localhost:63342/";
+    private static final String frontApi = AppConstants.frontApi;
+
 
     @CrossOrigin(origins = frontApi)
     @PostMapping("/create_student")
-    public ResponseEntity<EstudianteModel> createEstudiante(@RequestBody EstudianteModel estudiante){
-        //Utiliza el JPA para
+    public ResponseEntity<EstudianteModel> createStudent(@RequestBody EstudianteModel estudiante){
         EstudianteModel nuevoEstudiante =  estudianteRespository.save(estudiante);
         return new ResponseEntity<>(nuevoEstudiante, HttpStatus.CREATED);
-
     }
 
     @CrossOrigin(origins = frontApi)
     @GetMapping("/get_student/{id}")
-    public ResponseEntity<EstudianteModel> getEstudiante(@PathVariable Integer id) {
+    public ResponseEntity<EstudianteModel> getStudent(@PathVariable Integer id) {
         EstudianteModel estudiante = estudianteRespository.findById(id).orElseThrow(
                 () -> new NotFoundException("No existe el estudiante con id: " + id)
         );
@@ -36,13 +36,13 @@ public class EstudianteController {
 
     @CrossOrigin(origins = frontApi)
     @GetMapping("/get_all_students")
-    public List<EstudianteModel> getAllEstudiantes(){
+    public List<EstudianteModel> getAllStudents(){
         return estudianteRespository.findAll();
     }
 
     @CrossOrigin(origins = frontApi)
     @PutMapping("/update_student/{id}")
-    public EstudianteModel updateEstudiante(@PathVariable Integer id, @RequestBody EstudianteModel estudiante) {
+    public EstudianteModel updateStudent(@PathVariable Integer id, @RequestBody EstudianteModel estudiante) {
 
         EstudianteModel estudianteActual = estudianteRespository.findById(id).orElseThrow(
                 () -> new NotFoundException("No existe el estudiante con id: " + id)
@@ -57,13 +57,12 @@ public class EstudianteController {
 
     @CrossOrigin(origins = frontApi)
     @DeleteMapping("/delete_student/{id}")
-    public ResponseEntity<HttpStatus> borraEstudiante(@PathVariable Integer id) {
+    public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Integer id) {
 
         //Verifica que el estudiante exista primero
         EstudianteModel estudianteActual = estudianteRespository.findById(id).orElseThrow(
                 () -> new NotFoundException("No existe el estudiante con id: " + id)
         );
-
         estudianteRespository.delete(estudianteActual);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
