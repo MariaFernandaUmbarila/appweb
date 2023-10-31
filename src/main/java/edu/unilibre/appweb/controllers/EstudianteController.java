@@ -1,14 +1,16 @@
 package edu.unilibre.appweb.controllers;
+
 import edu.unilibre.appweb.constants.AppConstants;
 import edu.unilibre.appweb.exceptions.NotFoundException;
 import edu.unilibre.appweb.models.EstudianteModel;
-import edu.unilibre.appweb.models.EstudianteSummaryModel;
 import edu.unilibre.appweb.repository.EstudianteDetalleRepository;
-import org.springframework.http.HttpStatus;
 import edu.unilibre.appweb.repository.EstudianteRepository;
+import edu.unilibre.appweb.services.EstudianteDetalleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -19,6 +21,8 @@ public class EstudianteController {
     private EstudianteRepository estudianteRespository;
     @Autowired
     private EstudianteDetalleRepository estudianteDetalleRepository;
+    @Autowired
+    private EstudianteDetalleService estudianteDetalleService;
     private static final String frontApi = AppConstants.frontApi;
 
 
@@ -74,8 +78,9 @@ public class EstudianteController {
 
     @CrossOrigin(origins = frontApi)
     @GetMapping("/get_student_summary/{id}")
-    public List<EstudianteSummaryModel> getStudentSummary(@PathVariable Integer id){
-        return estudianteDetalleRepository.findNotasByEstudianteId(id);
+    public String getStudentSummary(@PathVariable Integer id){
+        List<List<Object>> respuestaLista = estudianteDetalleRepository.findNotasByEstudianteId(id);
+        return estudianteDetalleService.mapListToJson(respuestaLista);
     }
 
 }
