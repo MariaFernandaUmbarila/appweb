@@ -8,7 +8,6 @@ import lombok.Setter;
 @Entity
 @Table(name="materia")
 public class MateriaModel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

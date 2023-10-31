@@ -1,5 +1,4 @@
 package edu.unilibre.appweb.models;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,30 +10,20 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name="curso")
-@IdClass(CursoModelPK.class)
 public class CursoModel {
-
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "materia_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private MateriaModel materiaModel;
-
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "profesor_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private ProfesorModel profesorModel;
 
     @Id
     private String codigo;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "estudiante_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "materia_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private EstudianteModel estudiante;
+    private MateriaModel materiaModel;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "profesor_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private ProfesorModel profesorModel;
 
     @Column(name = "fecha_inicio")
     private Date fechaInicio;

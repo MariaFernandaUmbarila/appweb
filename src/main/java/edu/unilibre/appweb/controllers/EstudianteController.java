@@ -21,7 +21,7 @@ public class EstudianteController {
     @CrossOrigin(origins = frontApi)
     @PostMapping("/create_student")
     public ResponseEntity<EstudianteModel> createStudent(@RequestBody EstudianteModel estudiante){
-        EstudianteModel nuevoEstudiante =  estudianteRespository.save(estudiante);
+        EstudianteModel nuevoEstudiante = estudianteRespository.save(estudiante);
         return new ResponseEntity<>(nuevoEstudiante, HttpStatus.CREATED);
     }
 
