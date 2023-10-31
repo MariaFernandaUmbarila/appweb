@@ -2,6 +2,8 @@ package edu.unilibre.appweb.controllers;
 import edu.unilibre.appweb.constants.AppConstants;
 import edu.unilibre.appweb.exceptions.NotFoundException;
 import edu.unilibre.appweb.models.EstudianteModel;
+import edu.unilibre.appweb.models.EstudianteSummaryModel;
+import edu.unilibre.appweb.repository.EstudianteDetalleRepository;
 import org.springframework.http.HttpStatus;
 import edu.unilibre.appweb.repository.EstudianteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class EstudianteController {
 
     @Autowired
     private EstudianteRepository estudianteRespository;
+    @Autowired
+    private EstudianteDetalleRepository estudianteDetalleRepository;
     private static final String frontApi = AppConstants.frontApi;
 
 
@@ -66,6 +70,12 @@ public class EstudianteController {
         estudianteRespository.delete(estudianteActual);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
+    }
+
+    @CrossOrigin(origins = frontApi)
+    @GetMapping("/get_student_summary/{id}")
+    public List<EstudianteSummaryModel> getStudentSummary(@PathVariable Integer id){
+        return estudianteDetalleRepository.findNotasByEstudianteId(id);
     }
 
 }
