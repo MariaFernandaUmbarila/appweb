@@ -1,7 +1,8 @@
 package edu.unilibre.appweb.controllers;
-
 import edu.unilibre.appweb.constants.AppConstants;
 import edu.unilibre.appweb.exceptions.NotFoundException;
+import edu.unilibre.appweb.models.EstudianteDetalleMapping;
+import edu.unilibre.appweb.models.EstudianteDetalleModel;
 import edu.unilibre.appweb.models.EstudianteModel;
 import edu.unilibre.appweb.repository.EstudianteDetalleRepository;
 import edu.unilibre.appweb.repository.EstudianteRepository;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -24,7 +24,6 @@ public class EstudianteController {
     @Autowired
     private EstudianteDetalleService estudianteDetalleService;
     private static final String frontApi = AppConstants.frontApi;
-
 
     @CrossOrigin(origins = frontApi)
     @PostMapping("/create_student")
@@ -81,6 +80,13 @@ public class EstudianteController {
     public String getStudentSummary(@PathVariable Integer id){
         List<List<Object>> respuestaLista = estudianteDetalleRepository.findNotasByEstudianteId(id);
         return estudianteDetalleService.mapListToJson(respuestaLista);
+    }
+
+    @CrossOrigin(origins = frontApi)
+    @PostMapping("/create_grade")
+    public ResponseEntity<EstudianteDetalleModel> createGrade(@RequestBody EstudianteDetalleMapping notaDto){
+        EstudianteDetalleModel nuevaNota = estudianteDetalleRepository.save(estudianteDetalleService.mapDtoToModel(notaDto));
+        return new ResponseEntity<>(nuevaNota, HttpStatus.CREATED);
     }
 
 }
