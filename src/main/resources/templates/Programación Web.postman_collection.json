@@ -286,7 +286,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"observacion\": \"Buena presentacion\",\r\n    \"valor\": 3,\r\n    \"porcentaje\": 15.0\r\n}",
+							"raw": "{\r\n    \"observacion\": \"Buena presentacion\",\r\n    \"valor\": 3,\r\n    \"porcentaje\": 10.0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -381,6 +381,135 @@
 							"path": [
 								"api",
 								"get_grade_details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Materia",
+			"item": [
+				{
+					"name": "Crear materia",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Ingeneria de Software III\",\r\n    \"creditos\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/create_subject",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"create_subject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar materia",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Ingeneria de Software III\",\r\n    \"creditos\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/update_subject/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"update_subject",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todas las materias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/get_all_subjects",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"get_all_subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener materia por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/get_subject/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"get_subject",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar materia",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar materia",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/delete_subject/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"delete_subject",
+								"3"
 							]
 						}
 					},
