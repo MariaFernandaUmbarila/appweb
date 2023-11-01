@@ -6,5 +6,5 @@ import lombok.Setter;
 @Setter
 public class AppConstants {
     //Constantes para usar en todos los controladores
-    public static final String frontApi = "http://localhost:63342/";
+    public static final String frontApi = "http://localhost:3000/";
 }
