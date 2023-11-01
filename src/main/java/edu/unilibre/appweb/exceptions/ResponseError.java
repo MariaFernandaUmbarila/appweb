@@ -9,7 +9,6 @@ public class ResponseError {
     public ResponseError(String mensaje, List<String> detalles){
         super();
         this.mensaje = mensaje;
-        this.detalles = detalles;
     }
 
     private String mensaje;
