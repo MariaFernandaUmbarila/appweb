@@ -1,4 +1,4 @@
-package edu.unilibre.appweb.models;
+package edu.unilibre.appweb.services;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,6 @@
 package edu.unilibre.appweb.services;
 import edu.unilibre.appweb.exceptions.NotFoundException;
 import edu.unilibre.appweb.models.CursoModel;
-import edu.unilibre.appweb.models.EstudianteDetalleMapping;
 import edu.unilibre.appweb.models.EstudianteDetalleModel;
 import edu.unilibre.appweb.models.EstudianteModel;
 import edu.unilibre.appweb.repository.CursoRepository;
