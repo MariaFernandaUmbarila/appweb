@@ -57,7 +57,6 @@ public class MateriaController {
     @DeleteMapping("/delete_subject/{id}")
     public ResponseEntity<HttpStatus> deleteSubject(@PathVariable Integer id) {
 
-        //Verifica que el estudiante exista primero
         MateriaModel materiaActual = materiaRepository.findById(id).orElseThrow(
                 () -> new NotFoundException("No existe la materia con id: " + id)
         );

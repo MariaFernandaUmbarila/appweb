@@ -58,7 +58,6 @@ public class EstudianteController {
     @DeleteMapping("/delete_student/{id}")
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Integer id) {
 
-        //Verifica que el estudiante exista primero
         EstudianteModel estudianteActual = estudianteRepository.findById(id).orElseThrow(
                 () -> new NotFoundException("No existe el estudiante con id: " + id)
         );

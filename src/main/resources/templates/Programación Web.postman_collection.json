@@ -516,6 +516,127 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Curso",
+			"item": [
+				{
+					"name": "Crear curso",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": \"ING-SFW\",\r\n    \"materia\": 2,\r\n    \"profesor\": 1,\r\n    \"fechaInicio\": \"2023-10-30T10:00:00\",\r\n    \"fechaFin\": \"2023-10-30T10:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/create_course",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"create_course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los cursos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/get_all_courses",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"get_all_courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener curso por código",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/get_course/PRG-WEB",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"get_course",
+								"PRG-WEB"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar curso",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"materia\": 2,\r\n    \"profesor\": 1,\r\n    \"fechaInicio\": \"2023-10-30T10:00:00\",\r\n    \"fechaFin\": \"2024-10-30T10:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/update_course/PRG-WEB",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"update_course",
+								"PRG-WEB"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar curso",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/delete_course/ING-SFW",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"delete_course",
+								"ING-SFW"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
