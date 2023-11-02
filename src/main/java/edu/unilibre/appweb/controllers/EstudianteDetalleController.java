@@ -1,17 +1,18 @@
 package edu.unilibre.appweb.controllers;
+
 import edu.unilibre.appweb.constants.AppConstants;
 import edu.unilibre.appweb.exceptions.NotFoundException;
 import edu.unilibre.appweb.exceptions.ResponseError;
-import edu.unilibre.appweb.services.EstudianteDetalleMapping;
 import edu.unilibre.appweb.models.EstudianteDetalleModel;
 import edu.unilibre.appweb.repository.EstudianteDetalleRepository;
+import edu.unilibre.appweb.services.EstudianteDetalleMapping;
 import edu.unilibre.appweb.services.EstudianteDetalleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,22 +31,20 @@ public class EstudianteDetalleController {
     @GetMapping("/get_student_summary/{id}")
     public Object getStudentSummary(@PathVariable Integer id){
 
-        List<List<Object>> porcentajes = estudianteDetalleRepository.findPorcentajesByEstudianteId(id);
+        List<Object> porcentajes = estudianteDetalleRepository.findPorcentajesByEstudianteId(id);
         List<List<Object>> respuestaLista = estudianteDetalleRepository.findNotasByEstudianteId(id);
 
-        for (int i=0; i < porcentajes.size(); i++) {
-            List<Object> item = porcentajes.get(i);
-            BigDecimal sumaPorcentaje = (BigDecimal) item.get(i);
-            if (sumaPorcentaje.doubleValue() != 100.0) {
-                List<String> detalles = new ArrayList<>();
-                detalles.add("Porcentaje suma: " + item.get(i));
-                respuestaLista.remove(i);
-                return new ResponseError("Se omitió un registro en el resumen", detalles);
-            }else{
-                for (List<Object> itemL : respuestaLista) {
-                    BigDecimal valorCrudo = (BigDecimal) itemL.get(2);
-                    Double valorRedondeado = valorCrudo.setScale(2, RoundingMode.HALF_UP).doubleValue();
-                    itemL.set(2, valorRedondeado);
+        System.out.println(porcentajes);
+
+        if (porcentajes != null){
+            for (int i=0; i < porcentajes.size(); i++) {
+                Object item = porcentajes.get(i);
+                BigDecimal sumaPorcentaje = (BigDecimal) item;
+                if (sumaPorcentaje.doubleValue() != 100.0) {
+                    List<String> detalles = new ArrayList<>();
+                    detalles.add("Porcentaje suma: " + item);
+                    respuestaLista.remove(i);
+                    return new ResponseError("Se omitió un registro en el resumen", detalles);
                 }
             }
         }
@@ -59,12 +58,15 @@ public class EstudianteDetalleController {
 
         EstudianteDetalleModel nuevaNota = estudianteDetalleService.mapDtoToModel(notaDto);
         BigDecimal porcentajes = (BigDecimal) estudianteDetalleRepository.findPorcentajesByEstudianteCursoId(nuevaNota.getEstudiante().getId(), nuevaNota.getCodigo().getCodigo());
-        Double suma = porcentajes.doubleValue() + notaDto.getPorcentaje().doubleValue();
 
-        if (porcentajes.doubleValue() >= 100.0 || suma > 100.0) {
-            List<String> detalles = new ArrayList<>();
-            detalles.add(porcentajes.toString());
-            return new ResponseError("Los porcentajes suman más de 100 porciento para este curso", detalles);
+        if (porcentajes != null){
+            Double suma = porcentajes.doubleValue() + notaDto.getPorcentaje().doubleValue();
+
+            if (porcentajes.doubleValue() >= 100.0 || suma > 100.0) {
+                List<String> detalles = new ArrayList<>();
+                detalles.add(porcentajes.toString());
+                return new ResponseError("Los porcentajes suman más de 100 porciento para este curso", detalles);
+            }
         }
 
         estudianteDetalleRepository.save(nuevaNota);

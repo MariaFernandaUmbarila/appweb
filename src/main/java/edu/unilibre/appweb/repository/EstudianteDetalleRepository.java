@@ -11,7 +11,7 @@ public interface EstudianteDetalleRepository extends JpaRepository<EstudianteDet
     List<List<Object>> findNotasByEstudianteId(@Param("estudianteId") Integer estudianteId);
 
     @Query(value = "select sum(en.porcentaje) as porcentajes from estudiante_detalle en where estudiante_id = :estudianteId group by en.curso_codigo", nativeQuery = true)
-    List<List<Object>> findPorcentajesByEstudianteId(@Param("estudianteId") Integer estudianteId);
+    List<Object> findPorcentajesByEstudianteId(@Param("estudianteId") Integer estudianteId);
 
     @Query(value = "select sum(en.porcentaje) as porcentajes from estudiante_detalle en where estudiante_id = :estudianteId and en.curso_codigo = :cursoId", nativeQuery = true)
     Object findPorcentajesByEstudianteCursoId(@Param("estudianteId") Integer estudianteId, @Param("cursoId") String cursoId);
