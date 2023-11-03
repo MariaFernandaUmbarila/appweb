@@ -55,6 +55,7 @@ public class EstudianteDetalleService {
                 innerJsonObject.put("codigo", item.get(0));
                 innerJsonObject.put("nombre", item.get(1));
                 innerJsonObject.put("valor", item.get(2));
+                innerJsonObject.put("estudiante", item.get(3));
                 jsonObject.put("item" + (i + 1), innerJsonObject);
             }
         }

@@ -1,5 +1,4 @@
 package edu.unilibre.appweb.controllers;
-
 import edu.unilibre.appweb.constants.AppConstants;
 import edu.unilibre.appweb.exceptions.NotFoundException;
 import edu.unilibre.appweb.exceptions.ResponseError;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,24 +29,7 @@ public class EstudianteDetalleController {
     @GetMapping("/get_student_summary/{id}")
     public Object getStudentSummary(@PathVariable Integer id){
 
-        List<Object> porcentajes = estudianteDetalleRepository.findPorcentajesByEstudianteId(id);
         List<List<Object>> respuestaLista = estudianteDetalleRepository.findNotasByEstudianteId(id);
-
-        System.out.println(porcentajes);
-
-        if (porcentajes != null){
-            for (int i=0; i < porcentajes.size(); i++) {
-                Object item = porcentajes.get(i);
-                BigDecimal sumaPorcentaje = (BigDecimal) item;
-                if (sumaPorcentaje.doubleValue() != 100.0) {
-                    List<String> detalles = new ArrayList<>();
-                    detalles.add("Porcentaje suma: " + item);
-                    respuestaLista.remove(i);
-                    return new ResponseError("Se omitió un registro en el resumen", detalles);
-                }
-            }
-        }
-
         return estudianteDetalleService.mapListToJson(respuestaLista);
     }
 

@@ -24,8 +24,8 @@ CREATE TABLE curso (
     profesor_id integer NOT NULL,
     fecha_inicio date,
     fecha_fin date,
-    FOREIGN KEY (materia_id) references materia(id),
-    FOREIGN KEY (profesor_id) REFERENCES profesor(id)
+    FOREIGN KEY (materia_id) references materia(id) ON DELETE CASCADE,
+    FOREIGN KEY (profesor_id) REFERENCES profesor(id) ON DELETE CASCADE
 );
 
 CREATE TABLE estudiante_detalle (
@@ -35,8 +35,8 @@ CREATE TABLE estudiante_detalle (
     observacion varchar,
     valor numeric(3,2),
     porcentaje numeric(4,2),
-    FOREIGN KEY (curso_codigo) references curso(codigo),
-    FOREIGN KEY (estudiante_id) references estudiante(id)
+    FOREIGN KEY (curso_codigo) references curso(codigo) ON DELETE CASCADE,
+    FOREIGN KEY (estudiante_id) references estudiante(id) ON DELETE CASCADE
 );
 
 select en.curso_codigo, ma.nombre, sum(en.valor) from estudiante_detalle en inner join curso cu on(en.curso_codigo = cu.codigo) inner join materia ma on(cu.materia_id = ma.id) where estudiante_id = 1 group by en.curso_codigo, ma.nombre;
